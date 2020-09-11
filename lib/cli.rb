@@ -8,11 +8,14 @@ class CLI
     print '> '
     input = $stdin.gets.chomp
     if input == 'characters' 
+      #calls on characters method
       characters 
     elsif input == 'houses'
+      #calls on house method
       houses
     else
       puts 'There is a hurdle in the road, please choose another path:'
+      # calls on the list_characters method that iterates through the info
       list_characters
     end
 
@@ -20,7 +23,8 @@ class CLI
       
   def greeting
     puts "Welcome to the Characters and Houses of Game of Thrones!"
-    puts "What is your characters name so we can get started?"
+    puts "What is your name so we can get started?"
+    #gets users input and interpolates the response
     print '> '
       name = $stdin.gets.chomp
       puts "Welcome #{name} to House Targaryen of King's Landing!"
@@ -40,7 +44,8 @@ class CLI
         self
       else
         chars = CHARACTERS.all[input.to_i-1]
-        list_characters
+        API.character_list(chars)
+        list_characters_details(chars)
         puts "Would you like to see another character?"
         puts "Please enter yes or no"
         print '> '
@@ -50,8 +55,12 @@ class CLI
             puts 'Please choose a number to continue:'
             print '> '
             input = $stdin.gets.chomp
-                API.character_list
-                list_characters_details
+                chars = CHARACTERS.all[input.to_i-1]
+                API.character_list(chars)
+                list_characters_details(chars)
+                binding.pry true
+                puts "Thank you for using my app, welcome to any feedback."
+                puts "I hope you enjoyed it."
           else
             exit
           end
@@ -64,10 +73,12 @@ class CLI
     end
   end
 
-  def list_characters_details
-    CHARACTERS_DETAILS.all.each.with_index(1) do | char_info, i |
-        puts "#{i}. #{char_info.name}"
-    end
+  def list_characters_details(chars)
+    puts chars.gender
+    puts chars.culture
+    puts chars.born
+    puts chars.titles
+    puts chars.aliasesyes
   end
 
   def houses
@@ -102,4 +113,11 @@ class CLI
     end
   end
 
+  def list_house_details(chars)
+    puts chars.gender
+    puts chars.culture
+    puts chars.born
+    puts chars.titles
+    puts chars.aliasesyes
+  end
 end

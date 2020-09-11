@@ -2,11 +2,11 @@ class CHARACTERS
 
   @@all = []
 
-  attr_accessor :name, :url, :gender, :culture, :born, :titles
+  attr_accessor :name, :url, :gender, :culture, :born, :titles, :aliases
 
-  def initialize(name)
+  def initialize(name, url)
     self.name = name
-    # self.url = character[:url]
+    self.url = url
     # self.gender = character[:gender]
     # self.culture = character[:culture]
     # self.born = character[:born]

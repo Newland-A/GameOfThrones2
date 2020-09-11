@@ -10,8 +10,9 @@ class API
     # char_array = got_hash[:name]
     #then iterates through the hash and returns the elements
     got_hash.each do | character |
+      url = character[:url]
       name = character[:name]
-      CHARACTERS.new(name)
+      CHARACTERS.new(name, url)
    #binding.pry true
     end
   #binding.pry
@@ -22,12 +23,13 @@ class API
   def self.character_list(character)
     response = RestClient.get(character.url)
     char_hash = JSON.parse(response.body, symbolize_names:true)
-    character.name = char_hash[:name]
+    # character.name = char_hash[:name]
+    # binding.pry
     character.gender = char_hash[:gender]
     character.culture = char_hash[:culture]
     character.born = char_hash[:born]
     character.titles = char_hash[:titles]
-    character.aliases = char_hash[:titles][:aliases]
+    character.aliases = char_hash[:aliases]
    # binding.pry
   end
  

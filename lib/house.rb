@@ -1,6 +1,6 @@
 class HOUSES
 
-  attr_accessor :name, :region, :coat_of_arms, :titles, :ancestral_weapons
+  attr_accessor :name, :url, :region, :coat_of_arms, :titles, :ancestral_weapons
 
   @@all = []
 
