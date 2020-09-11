@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'pry'
+require 'json'
+require 'rest-client'
+require 'require_all'
+
+require_all 'lib'
+
+API.new
