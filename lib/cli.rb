@@ -55,12 +55,24 @@ class CLI
             puts 'Please choose a number to continue:'
             print '> '
             input = $stdin.gets.chomp
-                chars = CHARACTERS.all[input.to_i-1]
-                API.character_list(chars)
-                list_characters_details(chars)
-                # binding.pry true
-                puts "Thank you for using my app, welcome to any feedback."
-                puts "I hope you enjoyed it."
+              chars = CHARACTERS.all[input.to_i-1]
+              API.character_list(chars)
+              list_characters_details(chars)
+              # binding.pry true
+              puts "Would you like to see characters as well?"
+              puts "Please enter yes or no:"
+              print "> "
+              input = $stdin.gets.chomp
+                if input = 'yes'
+                  characters
+                elsif input = 'no'
+                  puts "Thank you for using my app"
+                  puts "Welcome to any feedback."
+                  puts "Have a good day!"
+                  exit
+                else
+                  start
+                end
           else
             exit
           end
@@ -78,7 +90,7 @@ class CLI
     puts chars.culture
     puts chars.born
     puts chars.titles
-    puts chars.aliasesyes
+    puts chars.aliases
   end
 
   def houses
@@ -110,8 +122,20 @@ class CLI
             API.house_list(chars)
             list_house_details(house)
             # binding.pry true
-            puts "Thank you for using my app, welcome to any feedback."
-            puts "I hope you enjoyed it."
+            puts "Would you like to see characters as well?"
+            puts "Please enter yes or no:"
+            print "> "
+            input = $stdin.gets.chomp
+            if input = 'yes'
+              characters
+            elsif input = 'no'
+              puts "Thank you for using my app"
+              puts "Welcome to any feedback."
+              puts "Have a good day!"
+              exit
+            else
+              start
+            end
       else
         exit
       end
