@@ -6,10 +6,10 @@ class HOUSES
 
   def initialize(realm)
     self.name = realm[:name]
-    self.region = realm[:region]
-    self.coat_of_arms = realm[:coatOfArms]
-    self.titles = realm[:titles]
-    self.ancestral_weapons = realm[:ancestralWeapons]
+    # self.region = realm[:region]
+    # self.coat_of_arms = realm[:coatOfArms]
+    # self.titles = realm[:titles]
+    # self.ancestral_weapons = realm[:ancestralWeapons]
     @@all << self
   end
 

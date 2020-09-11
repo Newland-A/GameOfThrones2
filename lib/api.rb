@@ -37,12 +37,13 @@ class API
   #returns that information in a parsed hash, symbolize turns all the keys a different color for easier readability
     house_hash = JSON.parse(response.body, symbolize_names:true)
   #selects the main key in the hash
-    house_array = house_hash[:name]
+    # house_array = house_hash[:name]
   #then iterates through the hash and returns the elements
 
   #it does not like the collect key word, Try to find a fix in the morning after a break.
     house_array.collect do |realm|
-      CLI.new.start(realm)
+      house = realm[:name]
+      HOUSES.new(house)
     end
 binding.pry
   end
