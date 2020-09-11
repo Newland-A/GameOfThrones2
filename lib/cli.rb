@@ -58,7 +58,7 @@ class CLI
                 chars = CHARACTERS.all[input.to_i-1]
                 API.character_list(chars)
                 list_characters_details(chars)
-                binding.pry true
+                # binding.pry true
                 puts "Thank you for using my app, welcome to any feedback."
                 puts "I hope you enjoyed it."
           else
@@ -94,13 +94,24 @@ class CLI
       self
     else
       house = HOUSES.all[input.to_i-1]
-      list_houses
+      API.house_list(house)
+      list_house_details(house)
+      # list_houses 'not needed for code but as reference
       puts "Would you liketo see another house?"
       puts "Please enter yes or no"
       print '> '
       input = $stdin.gets.chomp
       if input == 'yes'
         list_houses
+        puts 'Please choose a number to continue:'
+        print '> '
+        input = $stdin.gets.chomp
+            house = HOUSES.all[input.to_i-1]
+            API.house_list(chars)
+            list_house_details(house)
+            # binding.pry true
+            puts "Thank you for using my app, welcome to any feedback."
+            puts "I hope you enjoyed it."
       else
         exit
       end
@@ -114,10 +125,11 @@ class CLI
   end
 
   def list_house_details(chars)
-    puts chars.gender
-    puts chars.culture
-    puts chars.born
-    puts chars.titles
-    puts chars.aliasesyes
+    puts house.gender
+    puts house.culture
+    puts house.born
+    puts house.titles
+    puts house.aliases
   end
+
 end
