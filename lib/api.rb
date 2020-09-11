@@ -8,12 +8,13 @@ class API
     #selects the main key in the hash
     char_array = got_hash[:name]
     #then iterates through the hash and returns the elements
-    got_characters = char_array.collect do | character |
+    char_array.collect do | character |
       CLI.new(character)
     end
+  #binding.pry
   end
 
-  binding.pry
+  #binding.pry
 
   def self.character_list(character)
     response = RestClient.get(character.url)
@@ -23,7 +24,7 @@ class API
     character.born = char_hash[:born]
     character.titles = char_hash[:titles]
     character.aliases = char_hash[:titles][:aliases]
-    binding.pry
+   # binding.pry
   end
  
   def self.create_houses
@@ -34,13 +35,15 @@ class API
   #selects the main key in the hash
     house_array = house_hash[:name]
   #then iterates through the hash and returns the elements
-    got_house = house_array.collect do |realm|
+
+  #it does not like the collect key word, Try to find a fix in the morning after a break.
+    house_array.collect do |realm|
       CLI.new(realm)
     end
-
+binding.pry
   end
 
-  binding.pry
+  #binding.pry
 
   def self.house_list(house)
     response = RestClient.get(house.url)
@@ -49,7 +52,7 @@ class API
     house.culture = house_hash[:coatOfArms]
     house.titles = house_hash[:titles]
     house.aliases = house_hash[:ancestralWeapons]
-    binding.pry
+   # binding.pry
   end
 
 end

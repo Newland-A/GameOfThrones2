@@ -4,16 +4,16 @@ class CLI
     greeting
     puts "What information would you like to see?"
     puts "Please enter 'characters' if you would like characters: "
-    puts "Please enter 'house' if you like to see the houses: "
+    puts "Please enter 'houses' if you like to see the houses: "
     print '> '
     input = $stdin.gets.chomp
-    if input = 'characters' 
+    if input == 'characters' 
       characters 
-    elsif input = 'house'
+    elsif input == 'houses'
       houses
     else
       puts 'There is a hurdle in the road, please choose another path:'
-      start
+      characters
     end
 
   end
@@ -39,31 +39,49 @@ class CLI
         self
       else
         chars = CHARACTERS.all[input.to_i-1]
-        character_list
+        list_characters
         puts "Would you liketo see another character?"
         puts "Please enter yes or no"
         print '> '
         input = $stdin.gets.chomp
-        if input = 'yes'
-          list_characters
-        else
-          exit
-        end
+          if input == 'yes'
+            list_characters
+          else
+            exit
+          end
       end
   end
 
   def list_characters
-    Character.all.each.with_index(1) do | character, i |
+    CHARACTERS.all.each.with_index(1) do | character, i |
         puts "#{i}. #{character.name}"
     end
   end
 
   def houses
+    API.create_houses
+    list_houses
     puts 'Please pick a number to see houses information:'
     print '> '
     input = $stdin.gets.chomp
-    API.create_houses
-    list_houses
+    if !input.to_i.between?(1, HOUSES.all.length)
+      puts "HUM, that house doesn't seem to be here."
+      puts "Please look for another house:"
+      list_houses
+      self
+    else
+      house = HOUSES.all[input.to_i-1]
+      list_houses
+      puts "Would you liketo see another house?"
+      puts "Please enter yes or no"
+      print '> '
+      input = $stdin.gets.chomp
+      if input == 'yes'
+        list_houses
+      else
+        exit
+      end
+    end
   end
     
   def list_houses
