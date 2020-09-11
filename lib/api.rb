@@ -2,7 +2,7 @@ class API
 
   def self.create_characters
     #goes out and gets the information from the API
-    response = RestClient.get('https://anapioficeandfire.com/api/characters/')
+    response = RestClient.get('https://anapioficeandfire.com/api/characters?page=3&pageSize=25')
     # binding.pry
     #returns that information in a parsed hash sy
     got_hash = JSON.parse(response.body, symbolize_names:true)
@@ -12,9 +12,9 @@ class API
     got_hash.each do | character |
       name = character[:name]
       CHARACTERS.new(name)
-      binding.pry true
+   #binding.pry true
     end
-  binding.pry
+  #binding.pry
   end
 
   #binding.pry
@@ -41,11 +41,11 @@ class API
   #then iterates through the hash and returns the elements
 
   #it does not like the collect key word, Try to find a fix in the morning after a break.
-    house_array.collect do |realm|
+    house_hash.each do |realm|
       house = realm[:name]
       HOUSES.new(house)
     end
-binding.pry
+#binding.pry
   end
 
   #binding.pry

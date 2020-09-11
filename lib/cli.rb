@@ -30,6 +30,7 @@ class CLI
     API.create_characters
     list_characters
     puts 'Please pick a number to see characters information.'
+    puts 'Please enter: "number."'
     print '> '
     input = $stdin.gets.chomp
       if !input.to_i.between?(1, CHARACTERS.all.length)
@@ -40,12 +41,17 @@ class CLI
       else
         chars = CHARACTERS.all[input.to_i-1]
         list_characters
-        puts "Would you liketo see another character?"
+        puts "Would you like to see another character?"
         puts "Please enter yes or no"
         print '> '
         input = $stdin.gets.chomp
           if input == 'yes'
             list_characters
+            puts 'Please choose a number to continue:'
+            print '> '
+            input = $stdin.gets.chomp
+                API.character_list
+                list_characters_details
           else
             exit
           end
@@ -55,6 +61,12 @@ class CLI
   def list_characters
     CHARACTERS.all.each.with_index(1) do | character, i |
         puts "#{i}. #{character.name}"
+    end
+  end
+
+  def list_characters_details
+    CHARACTERS_DETAILS.all.each.with_index(1) do | char_info, i |
+        puts "#{i}. #{char_info.name}"
     end
   end
 
