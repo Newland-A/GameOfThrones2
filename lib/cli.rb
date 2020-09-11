@@ -13,7 +13,7 @@ class CLI
       houses
     else
       puts 'There is a hurdle in the road, please choose another path:'
-      characters
+      list_characters
     end
 
   end
