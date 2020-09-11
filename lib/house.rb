@@ -5,6 +5,7 @@ class HOUSE
   attr_accessor :name, :region, :coat_of_arms, :titles, :ancestral_weapons
 
   def initialize(realm)
+
     self.region = realm[:region]
     self.coat_of_arms = realm[:coatOfArms]
     self.titles = realm[:titles]

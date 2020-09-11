@@ -29,13 +29,12 @@ class API
   def self.create_houses
   #goes out and gets the information from the API
     response = RestClient.get('https://anapioficeandfire.com/api/houses/378')
-  #returns that information in a parsed hash sy
+  #returns that information in a parsed hash, symbolize turns all the keys a different color for easier readability
     house_hash = JSON.parse(response.body, symbolize_names:true)
   #selects the main key in the hash
     house_array = house_hash[:name]
   #then iterates through the hash and returns the elements
-    got_house = house_array.collect do | realm |
-
+    got_house = house_array.collect do |realm|
       CLI.new(realm)
     end
 
@@ -52,5 +51,5 @@ class API
     house.aliases = house_hash[:ancestralWeapons]
     binding.pry
   end
-  
+
 end

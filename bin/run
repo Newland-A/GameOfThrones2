@@ -7,4 +7,4 @@ require 'require_all'
 
 require_all 'lib'
 
-API.new
+CLI.new.start
