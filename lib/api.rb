@@ -35,7 +35,7 @@ class API
     house_array = house_hash[:name]
   #then iterates through the hash and returns the elements
     got_house = house_array.collect do | realm |
-      
+
       CLI.new(realm)
     end
 
@@ -43,14 +43,14 @@ class API
 
   binding.pry
 
-  def self.character_list(character)
-    response = RestClient.get(character.url)
-    char_hash = JSON.parse(response.body, symbolize_names:true)
-    character.gender = char_hash[:gender]
-    character.culture = char_hash[:culture]
-    character.born = char_hash[:born]
-    character.titles = char_hash[:titles]
-    character.aliases = char_hash[:titles][:aliases]
+  def self.house_list(house)
+    response = RestClient.get(house.url)
+    house_hash = JSON.parse(response.body, symbolize_names:true)
+    house.gender = house_hash[:region]
+    house.culture = house_hash[:coatOfArms]
+    house.titles = house_hash[:titles]
+    house.aliases = house_hash[:ancestralWeapons]
     binding.pry
   end
+  
 end
