@@ -6,6 +6,7 @@ class HOUSES
 
   def initialize(realm)
     self.name = realm[:name]
+    self.name = realm[:url]
     # self.region = realm[:region]
     # self.coat_of_arms = realm[:coatOfArms]
     # self.titles = realm[:titles]
