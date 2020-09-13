@@ -1,6 +1,6 @@
 class API
 
-  def self.create_characters
+  def self.create_characters #class method
     #goes out and gets the information from the API
     response = RestClient.get('https://anapioficeandfire.com/api/characters?page=3&pageSize=25')
     # binding.pry
@@ -13,17 +13,17 @@ class API
       url = character[:url]
       name = character[:name]
       CHARACTERS.new(name, url)
-   #binding.pry true
+   #binding.pry true #you use true to help make sure it hits the pry when there is no code after the pry.
     end
   #binding.pry
   end
 
   #binding.pry
 
-  def self.character_list(character)
+  def self.character_list(character) #class method with an argument
+
     response = RestClient.get(character.url)
     char_hash = JSON.parse(response.body, symbolize_names:true)
-    # character.name = char_hash[:name]
     # binding.pry
     character.gender = char_hash[:gender]
     character.culture = char_hash[:culture]
@@ -34,18 +34,20 @@ class API
   end
  
   def self.create_houses
-  #goes out and gets the information from the API
-    response = RestClient.get('https://anapioficeandfire.com/api/houses/')
+  #goes out and gets the information from the API                    # limits the amount of output
+    response = RestClient.get('https://anapioficeandfire.com/api/houses?pageSize=25')
   #returns that information in a parsed hash, symbolize turns all the keys a different color for easier readability
     house_hash = JSON.parse(response.body, symbolize_names:true)
-  #selects the main key in the hash
-    # house_array = house_hash[:name]
+  
   #then iterates through the hash and returns the elements
 
-  #it does not like the collect key word, Try to find a fix in the morning after a break.
+  #ref 3
     house_hash.each do |realm|
-      house = realm[:name]
-      HOUSES.new(house)
+      #sets the arguments of the attributes to a var
+      url = realm[:url]
+      name = realm[:name]
+      #passes the var on the HOUSES class to create a new instance
+      HOUSES.new(name, url)
     end
 #binding.pry
   end
@@ -55,11 +57,33 @@ class API
   def self.house_list(house)
     response = RestClient.get(house.url)
     house_hash = JSON.parse(response.body, symbolize_names:true)
-    house.gender = house_hash[:region]
-    house.culture = house_hash[:coatOfArms]
+    house.region = house_hash[:region]
+    house.coat_of_arms = house_hash[:coatOfArms]
     house.titles = house_hash[:titles]
-    house.aliases = house_hash[:ancestralWeapons]
+    house.ancestral_weapons = house_hash[:ancestralWeapons]
    # binding.pry
   end
-
+  
 end
+
+#may be used for refactor later on
+# character.name = char_hash[:name]
+
+#selects the main key in the hash
+    # house_array = house_hash[:name] #used at the beginning of the code to help iterate each attribute til it was no longer needed.
+
+#possible way to refactor the house_list to out put numbers as well
+
+#Maybe I need a class for the details as well instead of calling on the Houses class
+
+# house_hash.each do |realm|
+#   coat_of_arms  = realm[:coatOfArms]
+#   titles  = realm[:titles]
+#   ancestral_weapons  = realm[:ancestralWeapons]
+#   HOUSES.new(coat_of_arms, titles, ancestral_weapons)
+# # end
+
+
+# reference 3
+#it does not like the collect key word, Try to find a fix in the morning after a break.
+# house_hash.each do |realm|

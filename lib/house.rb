@@ -4,8 +4,9 @@ class HOUSES
 
   @@all = []
 
-  def initialize(realm)
-    self.name = realm[:name]
+  def initialize(name, url)
+    self.name = name
+    self.url = url
     # self.region = realm[:region]
     # self.coat_of_arms = realm[:coatOfArms]
     # self.titles = realm[:titles]
