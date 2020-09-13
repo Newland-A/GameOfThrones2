@@ -7,10 +7,6 @@ class CHARACTERS
   def initialize(name, url)
     self.name = name
     self.url = url
-    # self.gender = character[:gender]
-    # self.culture = character[:culture]
-    # self.born = character[:born]
-    # self.titles = character[:titles]
     @@all << self
   end
 
@@ -19,3 +15,10 @@ class CHARACTERS
   end
 
 end
+
+#may be need later for extra features
+#init properties
+# self.gender = character[:gender]
+    # self.culture = character[:culture]
+    # self.born = character[:born]
+    # self.titles = character[:titles]
