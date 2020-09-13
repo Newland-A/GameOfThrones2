@@ -1,6 +1,6 @@
-# GameOfThrones
+# GameOfThrones || GOT
 
-Welcome to Game Of Thrones App. Here you will be able to see characters and their houses. Once you get information about one character you can get another character or exit the program. If you select another character you can then choose to look at the house and there attributes.
+Welcome to Game Of Thrones App. Here you will be able to see characters and their houses. Once you get information about one character you can get another character or exit the program. If you select another character you can then choose to look at the house and there attributes. Happy searching for the information 
 
 ## Installation
 
