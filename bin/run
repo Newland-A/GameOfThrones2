@@ -1,14 +1,17 @@
 #!/usr/bin/env ruby
-
+#SHEBANG line tells this file that it will be run as a ruby file. Since it is the executable file and has no dot extention
+#gems required so program will operate
 require 'pry' #very helpful to see what your code does.
 require 'json' #how to turn into a hash
 require 'rest-client' #how to retrieve
 
+#Relates to the parent folder to call on the siblings of this file
 require_relative '../lib/api'
 require_relative '../lib/cli'
 require_relative '../lib/characters'
 require_relative '../lib/house'
 
+#creates a new class instance and calls on the start instance method
 CLI.new.start
 
 

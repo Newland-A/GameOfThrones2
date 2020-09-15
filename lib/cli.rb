@@ -5,16 +5,19 @@ class CLI
     puts "What information would you like to see?"
     puts "Please enter 'characters' if you would like characters: "
     puts "Please enter 'houses' if you like to see the houses: "
+    puts "Please type exit to leave the app!"
     #gets users input $stdin is for a linux system there is 3 of the $stdin $stdout and $stderr
     print '> '
-    input = $stdin.gets.chomp
-    if input == 'characters' 
+    input = $stdin.gets.chomp.downcase
+    # if input.start_with?('c').downcase
+    if input == 'characters'.start_with?('c')
       #calls on characters method
       characters 
     elsif input == 'houses'
       #calls on house method
-      
       houses
+    elsif input == 'exit'
+      exit
     else
       puts 'There is a hurdle in the road, please choose another path:'
       # calls on the list_characters method that iterates through the info
@@ -49,7 +52,7 @@ class CLI
         puts "HUM, that character doesn't seem to be here."
         puts "Please look for another character:"
         list_characters
-        self
+        self #instance self
       else
         chars = CHARACTERS.all[input.to_i-1]
         API.character_list(chars)
@@ -82,13 +85,13 @@ class CLI
                 else
                   start
                 end
-        
           end
       end
   end
 
   def list_characters
     CHARACTERS.all.each.with_index(1) do | character, i |
+      sleep 0.5
       puts "#{i}. #{character.name}"
         
     end
@@ -107,12 +110,12 @@ class CLI
     list_houses
     puts 'Please pick a number to see houses information:'
     print '> '
-    input = $stdin.gets.chomp
+    input = $stdin.gets.chomp.downcase
     if !input.to_i.between?(1, HOUSES.all.length)
       puts "HUM, that house doesn't seem to be here."
       puts "Please look for another house:"
       list_houses
-      self #instance self
+      self #instance of self
     else
       house = HOUSES.all[input.to_i-1]
       API.house_list(house)
@@ -121,20 +124,20 @@ class CLI
       puts "Would you like to see another house?"
       puts "Please enter yes or no"
       print '> '
-      input = $stdin.gets.chomp
+      input = $stdin.gets.chomp.downcase
       if input == 'yes'
         list_houses
         puts 'Please choose a number to continue:'
         print '> '
-        input = $stdin.gets.chomp
+        input = $stdin.gets.chomp.downcase
           house = HOUSES.all[input.to_i-1]
           API.house_list(house)
           list_house_details(house)
-            # binding.pry true
+            # binding.pry #true was used to make sure it hit the pry before below code was added
           puts "Would you like to see characters as well?"
           puts "Please enter yes or no:"
           print "> "
-            input = $stdin.gets.chomp
+            input = $stdin.gets.chomp.downcase
             if input == 'yes' 
               characters
             elsif input == 'no'
@@ -151,6 +154,8 @@ class CLI
     
   def list_houses
     HOUSES.all.each.with_index(1) do | realm, i |
+      #pauses program for 5 seconds
+      sleep 0.5
       puts "#{i}. #{realm.name}"
     end
   end
@@ -163,7 +168,7 @@ class CLI
   end
 
 end
-#what would be need to help refactor so the details have index numbers as well.
+#what would be need to help refactor so the details have index numbers as well.???
 # def list_house_details
 #   API.house_list.each.with_index(1) do | house, i |
 #     puts "#{i}. #{house.name}"
