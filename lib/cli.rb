@@ -10,17 +10,19 @@ class CLI
     print '> '
     input = $stdin.gets.chomp.downcase
     # if input.start_with?('c').downcase
-    if input == 'characters'.start_with?('c')
+    if input.start_with?('c')
+    # if input == 'characters'
       #calls on characters method
       characters 
-    elsif input == 'houses'
-      #calls on house method
+    # elsif input == 'houses' 
+    elsif input.start_with?('h') #refactered to prevent spelling typos
+      #calls on house instance method
       houses
     elsif input == 'exit'
       exit
     else
       puts 'There is a hurdle in the road, please choose another path:'
-      # calls on the list_characters method that iterates through the info
+      # calls on the list_characters instance method that iterates through the info
       characters
     end
 
@@ -31,7 +33,7 @@ class CLI
     puts "What is your name so we can get started?"
     #gets users input and interpolates the response
     print '> '
-      name = $stdin.gets.chomp
+      name = $stdin.gets.chomp.capitalize
       puts "Welcome #{name} to House Targaryen of King's Landing!"
       puts "You can find information on the characters and their houses."
       puts "I hope your journey leads to the results your looking for."
@@ -50,7 +52,7 @@ class CLI
     #relists the array
       if !input.to_i.between?(1, CHARACTERS.all.length) #unless input == exit
         puts "HUM, that character doesn't seem to be here."
-        puts "Please look for another character:"
+        puts "Please make a valid entry:"
         list_characters
         self #instance self
       else
@@ -70,7 +72,7 @@ class CLI
               # calls on the API class and inputs a argument of the index of the characters class
               API.character_list(chars)
               list_characters_details(chars)
-              # binding.pry true
+# binding.pry true
               puts "Would you like to see Houses as well?"
               puts "Please enter yes or no:"
               print "> "
@@ -91,7 +93,7 @@ class CLI
 
   def list_characters
     CHARACTERS.all.each.with_index(1) do | character, i |
-      sleep 0.5
+      sleep 0.3
       puts "#{i}. #{character.name}"
         
     end
@@ -133,7 +135,7 @@ class CLI
           house = HOUSES.all[input.to_i-1]
           API.house_list(house)
           list_house_details(house)
-            # binding.pry #true was used to make sure it hit the pry before below code was added
+ # binding.pry #true was used to make sure it hit the pry before below code was added
           puts "Would you like to see characters as well?"
           puts "Please enter yes or no:"
           print "> "
@@ -155,7 +157,7 @@ class CLI
   def list_houses
     HOUSES.all.each.with_index(1) do | realm, i |
       #pauses program for 5 seconds
-      sleep 0.5
+      sleep 0.3
       puts "#{i}. #{realm.name}"
     end
   end
@@ -168,6 +170,7 @@ class CLI
   end
 
 end
+
 #what would be need to help refactor so the details have index numbers as well.???
 # def list_house_details
 #   API.house_list.each.with_index(1) do | house, i |

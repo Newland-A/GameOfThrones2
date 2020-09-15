@@ -18,8 +18,6 @@ class API
   #binding.pry
   end
 
-  #binding.pry
-
   def self.character_list(character) #class method with an argument
 
     response = RestClient.get(character.url)
@@ -33,7 +31,7 @@ class API
    # binding.pry
   end
  
-  def self.create_houses
+  def self.create_houses #class method
   #goes out and gets the information from the API                    # limits the amount of output
     response = RestClient.get('https://anapioficeandfire.com/api/houses?pageSize=25')
   #returns that information in a parsed hash, symbolize turns all the keys a different color for easier readability
@@ -51,8 +49,6 @@ class API
     end
 #binding.pry
   end
-
-  #binding.pry
 
   def self.house_list(house)
     response = RestClient.get(house.url)

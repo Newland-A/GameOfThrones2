@@ -1,8 +1,9 @@
 class CHARACTERS
 
   @@all = []
-
-  attr_accessor :name, :url, :gender, :culture, :born, :titles, :aliases
+  #writes 2 methods a writer and a reader 
+  attr_accessor :name, :url#, :gender, :culture, :born, :titles, :aliases
+  attr_reader :gender, :culture, :born, :titles, :aliases
 
   def initialize(name, url)
     self.name = name
